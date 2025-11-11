@@ -205,13 +205,12 @@ O artefacto físico é composto por uma base robótica 4WD com:
 
 | Fase | Atividade | Responsável | Prazo |
 |------|------------|--------------|--------|
-| 1️⃣ | Levantamento de requisitos e planeamento | Todos | Nov 2025 |
-| 2️⃣ | Montagem e testes dos sensores | Catarina | Dez 2025 |
-| 3️⃣ | Programação do ESP32 e controlo de movimento | Ruben | Dez 2025 |
-| 4️⃣ | Integração com servidor Python e base de dados | Sofia | Jan 2026 |
-| 5️⃣ | Implementação de IA e voz | Todos  | Jan 2026 |
-| 6️⃣ | Testes e validação final | Todos | Fev 2026 |
-| 7️⃣ | Preparação de relatório e apresentação | Todos | Fev 2026 |
+| 1️⃣ | Levantamento de requisitos e planeamento | Todos | semana 1/2 |
+| 2️⃣ | Desenvolvimento do protótipo | Catarina | semana 3/4 |
+| 3️⃣ | Programação do ESP32 e controlo de movimento | Ruben | semana 4/5 |
+| 4️⃣ | Integração com servidor Python | Sofia | semana 5/6 |
+| 5️⃣ | Plataforma Web e Base de dados | Todos  | semana 6/7 |
+| 6️⃣ | Testes e validação final | Todos | semana 7 |
 
 ---
 
