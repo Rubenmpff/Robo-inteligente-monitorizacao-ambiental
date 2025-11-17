@@ -33,9 +33,6 @@ O sistema destina-se a **habitações, escolas, escritórios, laboratórios e es
 Este tipo de solução é particularmente útil em **ambientes onde o controlo climático e acústico influencia o desempenho das atividades**, como salas de aula, bibliotecas, centros de trabalho colaborativo ou áreas comerciais.  
 O robô permite recolher dados, processá-los localmente e comunicar alertas ou recomendações, promovendo uma **gestão mais eficiente e inteligente do ambiente**.  
 
-Além disso, a sua **mobilidade e autonomia** tornam-no adequado para contextos em que as medições fixas são insuficientes, permitindo uma **cobertura dinâmica do espaço** e a **integração futura com sistemas de automação ou domótica**.
-
-
 
 ---
 
@@ -44,9 +41,9 @@ Além disso, a sua **mobilidade e autonomia** tornam-no adequado para contextos 
 O projeto tem como objetivo desenvolver um **robô inteligente de monitorização ambiental**, baseado na plataforma **ESP32**, que seja capaz de:
 
 - 📡 **Recolher dados ambientais** em tempo real (temperatura, humidade, som);  
-- 🚗 **Deslocar-se autonomamente** pelo espaço, evitando obstáculos;  
+- 🚗 **Deslocar-se** pelo espaço, detetando obstáculos;  
 - 🧠 **Processar localmente as informações** e reagir de forma inteligente;  
-- 🗣️ **Comunicar com o utilizador por voz** e apresentar dados no ecrã e em LEDs;
+- 🗣️ **Comunicar com o utilizador** e apresentar dados no ecrã e em LEDs;
 - 💾 **Armazenar dados** para análise posterior e possíveis previsões.  
 
 Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)**, **Inteligência Artificial** e **Engenharia de Software**, aplicadas ao contexto de **monitorização ambiental**.
@@ -61,17 +58,14 @@ Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)
 | Componente | Quantidade | Função |
 |-------------|-------------|--------|
 | ESP32 DevKit | 1 | Microcontrolador principal |
-| ESP32-CAM | 1 | Visão e reconhecimento facial |
 | DHT22 | 1 | Sensor de temperatura e humidade |
-| HC-SR04 | 3 | Evitar obstáculos e detectar distância |
-| INMP441 | 1 | Microfone digital (nível de som / voz) |
+| HC-SR04 | 1 | detectar obstáculos e distância |
+| INMP441 | 1 | Microfone digital (nível de som) |
 | OLED 0.96” | 1 | Mostrar expressões e dados |
 | 1 LED RGB (KY-016) | 1 | Feedback visual (cor por nível de som/estado) |
-| Par de alto-falantes 4Ω/8Ω 3W (série 3070) | 2 | Saída de áudio para voz e sons |
-| Módulo amplificador PAM8403 (ou LM386) | 1 | Amplificação de sinal de áudio para os alto-falantes |
 | L298N | 1 | Ponte H para controlo dos motores |
 | Motores DC + rodas | 4 | Locomoção do robô |
-| Bateria 18650 + suporte | 2 | Alimentação |
+| Pilhas | 1 | Alimentação |
 | Breadboard e jumpers | — | Ligações e prototipagem |
 | Chassis robótico 4WD | 1 | Estrutura física do robô |
 
@@ -86,9 +80,6 @@ Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)
 | Python | Processamento de dados e IA |
 | Flask | Servidor local e API REST |
 | SQLite / MySQL | Armazenamento de dados |
-| MQTT | Comunicação entre robô e servidor |
-| OpenCV + face_recognition | Visão computacional |
-| Vosk + Piper | Reconhecimento e síntese de voz offline |
 | GitHub | Controlo de versões e documentação |
 | Draw.io / Fritzing | Criação de diagramas |
 | Wokwi / easyeda | Simulação de circuitos e sensores |
@@ -112,7 +103,7 @@ Os dados recolhidos são processados localmente e, quando disponível uma ligaç
     +-------------------------------------------+
     |               Servidor Local              |
     |-------------------------------------------|
-    |  • Python (Flask / MQTT)                  |
+    |  • Python                                 |
     |  • Base de Dados (SQLite / MySQL)         |
     |  • Interface Web de Monitorização         |
     +--------------------^----------------------+
@@ -123,13 +114,12 @@ Os dados recolhidos são processados localmente e, quando disponível uma ligaç
     |                Robô ESP32                 |
     |-------------------------------------------|
     |  • ESP32 DevKit                          |
-    |  • Sensores: DHT22, LDR, INMP441, HC-SR04|
+    |  • Sensores: DHT22, HC-SR04              |
     |  • OLED Display + LED RGB (KY-016)       |
     |  • Ponte H L298N + Motores DC            |
-    |  • Bateria 18650                         |
+    |  • Pilhas                                |
     |-------------------------------------------|
     |  • Recolhe dados ambientais              |
-    |  • Movimenta-se autonomamente            |
     |  • Reage a som e obstáculos              |
     |  • Envia dados para o servidor           |
     +-------------------------------------------+
@@ -152,12 +142,11 @@ Os dados recolhidos são processados localmente e, quando disponível uma ligaç
 
 O artefacto físico é composto por uma base robótica 4WD com:
 - Estrutura em plástico;
-- Sensores frontais e laterais (DHT22, HC-SR04, LDR, INMP441);
-- Câmara frontal (ESP32-CAM);
+- Sensores frontais e laterais (DHT22, HC-SR04, INMP441);
 - Ecrã OLED representando o “rosto” do robô;
 - LEDs WS2812B para feedback visual e reação a som;
-- Altifalante e microfone integrados para interação por voz;
-- Alimentação por bateria 18650;
+- Microfone integrado;
+- Alimentação por Pilhas;
 
 *(Metemos Imagem quando começarmos o projeto)*
 
@@ -169,11 +158,10 @@ O artefacto físico é composto por uma base robótica 4WD com:
 | Categoria | Elemento | Quantidade | Observações |
 |------------|-----------|-------------|-------------|
 | 🧠 Microcontrolador | ESP32 DevKit | 1 | Controlador principal do robô |
-| 🌡️ Sensores | DHT22, HC-SR04, LDR, INMP441 | — | Recolha de dados ambientais (temperatura, humidade, distância, som) |
-| 👁️ Visão | ESP32-CAM | 1 | Câmera frontal para reconhecimento e visão |
+| 🌡️ Sensores | DHT22, HC-SR04, INMP441 | — | Recolha de dados ambientais (temperatura, humidade, distância, som) |
 | 🚗 Movimento | L298N + Motores DC | 1 + 4 | Ponte H e motores para locomoção |
 | 💡 Feedback | OLED 0.96" + LED RGB (KY-016) | 1 + 1 | Ecrã e LED RGB para expressões e reação a som |
-| 🔋 Energia | Baterias 18650  | 2  | Alimentação |
+| 🔋 Energia | Pilhas | 1  | Alimentação |
 | 🧱 Estrutura | Chassis robótico 4WD | 1 | Base física com rodas e suporte |
 | 🔌 Ligações | Breadboard, jumpers, resistências 220 Ω | — | Montagem e prototipagem dos circuitos |
 
@@ -182,17 +170,15 @@ O artefacto físico é composto por uma base robótica 4WD com:
 
 ### 🧩 Guião 1 – Monitorização Ambiental
 1. Ligar o robô e aguardar a inicialização do sistema.  
-2. O robô ativa automaticamente os sensores DHT22, LDR e INMP441.  
-3. Os valores de temperatura, humidade e nível de som são apresentados no ecrã OLED.  
-4. O robô comunica por voz os dados recolhidos, por exemplo: “Temperatura 23 graus, humidade 42%”.  
-5. Os dados são enviados para o servidor local e registados na base de dados.
+2. O robô ativa automaticamente os sensores DHT22, INMP441.  
+3. Os valores de temperatura, humidade e nível de som são apresentados no ecrã OLED.
+4. Os dados são enviados para o servidor local e registados na base de dados.
 
-### 🎧 Guião 2 – Reação a Som e Luz
+### 🎧 Guião 2 – Reação a Som
 1. Colocar o robô num ambiente com diferentes níveis de ruído.  
 2. O microfone (INMP441) deteta o volume ambiente.  
-3. O LED RGB muda de cor conforme o nível de som (verde → azul → vermelho).  
-4. O robô comunica por voz: “Ambiente ruidoso.”  
-5. Quando o som diminui, o LED regressa a verde e o robô retoma o movimento normal.
+3. O LED RGB muda de cor conforme o nível de som (verde → azul → vermelho).
+4. Quando o som diminui, o LED regressa a verde.
 
 ---
 
@@ -219,8 +205,8 @@ O artefacto físico é composto por uma base robótica 4WD com:
 | Fase | Descrição | Estado |
 |------|------------|--------|
 | 1️⃣ Protótipo base | Movimento, sensores, LEDs e leitura de dados | 🔄 Em desenvolvimento |
-| 2️⃣ Integração energética | Alimentação a bateria | ⏳ Próxima fase |
-| 3️⃣ Inteligência artificial | Voz, reconhecimento facial e predição | 🔜 Planeada |
+| 2️⃣ Integração energética | Alimentação a Pilhas | ⏳ Próxima fase |
+| 3️⃣ Inteligência artificial | Predição | 🔜 Planeada |
 | 4️⃣ Versão final | Testes, relatório e apresentação | 🟢 Fase final |
 
 ---
@@ -231,7 +217,7 @@ O artefacto físico é composto por uma base robótica 4WD com:
 |--------------------|-----------------------|
 | **Sistemas Distribuídos** | Implementação da comunicação entre o robô (cliente) e o servidor local (servidor) através de Wi-Fi, com troca de dados em tempo real. |
 | **Internet of Things (IoT)** | Integração de múltiplos sensores e atuadores conectados à rede, recolha e envio de dados ambientais. |
-| **Inteligência Artificial (IA)** | Processamento de dados ambientais, reconhecimento facial e resposta interativa por voz. |
+| **Inteligência Artificial (IA)** | Processamento de dados ambientais .|
 | **Engenharia de Software** | Estruturação modular do código, definição de requisitos, testes, validação e documentação no GitHub. |
 
 ---
