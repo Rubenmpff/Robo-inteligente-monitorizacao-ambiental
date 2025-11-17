@@ -9,7 +9,7 @@
 **Ano letivo:** 2025/2026  
 **Grupo:** 1  
 **Título do Projeto:** Robô Inteligente de Monitorização Ambiental  
-**Palavras-chave:** IoT, ESP32, Inteligência Artificial, Robótica, Sensores
+**Palavras-chave:** IoT, ESP32, Inteligência Artificial, Robótica, Sensores;
 **Repositório GitHub:** https://github.com/Rubenmpff/Robo-inteligente-monitorizacao-ambiental  
 
 ---
