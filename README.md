@@ -60,7 +60,7 @@ Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)
 |-------------|-------------|--------|
 | ESP32 DevKit | 1 | Microcontrolador principal |
 | DHT22 | 1 | Sensor de temperatura e humidade |
-| HC-SR04 | 1 | detectar obstáculos e distância |
+| HC-SR04 | 1 | Detectar obstáculos e distância |
 | INMP441 | 1 | Microfone digital (nível de som) |
 | OLED 0.96” | 1 | Mostrar expressões e dados |
 | 1 LED RGB (KY-016) | 1 | Feedback visual (cor por nível de som/estado) |
@@ -217,7 +217,7 @@ O artefacto físico é composto por uma base robótica 4WD com:
 | Unidade Curricular | Contributo do Projeto |
 |--------------------|-----------------------|
 | **Sistemas Distribuídos** | Implementação da comunicação entre o robô (cliente) e o servidor local (servidor) através de Wi-Fi, com troca de dados em tempo real. |
-| **Internet of Things (IoT)** | Integração de múltiplos sensores e atuadores conectados à rede, recolha e envio de dados ambientais. |
+| **Computação Física e Internet of Things (IoT)** | Integração de múltiplos sensores e atuadores conectados à rede, recolha e envio de dados ambientais. |
 | **Inteligência Artificial (IA)** | Processamento de dados ambientais .|
 | **Engenharia de Software** | Estruturação modular do código, definição de requisitos, testes, validação e documentação no GitHub. |
 
