@@ -13,6 +13,11 @@
 
 **Repositório GitHub:** https://github.com/Rubenmpff/Robo-inteligente-monitorizacao-ambiental  
 
+## 📚 Documentação e Entregas
+- 🧱 [Relatório Técnico – Primeira Entrega (PBL Milestone 1)](README.md)
+- ⚙️ [Relatório Técnico – Milestone 2 (Desenvolvimento e Prototipagem)](Milestone2_Desenvolvimento_Prototipagem.md)
+
+
 ---
 
 ## 🧠 Problema Identificado
