@@ -233,8 +233,11 @@ O desenvolvimento segue uma abordagem incremental, começando por um protótipo 
 ---
 
 📄 **Autores:**  
+
 Ruben Ferreira
+
 Sofia Leandro
+
 Catarina Cardoso	
 
 📅 **Data:** Novembro 2025  
@@ -297,22 +300,8 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 
 ### 🧱 Arquitetura Geral
 
-┌──────────────────────────┐
-│ Dashboard Web            │
-│ (HTML, JS, Chart.js)     │
-└─────────────▲────────────┘
-              │ HTTP (REST)
-┌─────────────┴────────────┐
-│ Servidor Flask           │
-│ Base de Dados SQLite     │
-│ Alertas Telegram / IA    │
-└─────────────▲────────────┘
-              │ Wi-Fi (JSON)
-┌─────────────┴────────────┐
-│ ESP32 (Robô)             │
-│ DHT22 | HC-SR04 | OLED   │
-│ L298N | Buzzer | Motores │
-└──────────────────────────┘
+
+<img width="197" height="321" alt="image" src="https://github.com/user-attachments/assets/51b75349-aba8-4192-9fd0-4ece239907fa" />
 
 
 📐 *Inserir aqui um diagrama de arquitetura feito em Draw.io ou Lucidchart*
@@ -335,13 +324,8 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 
 ### 🔧 Esquema Simplificado
 
-ESP32
-├── DHT22 → GPIO 15
-├── HC-SR04 (frente) → TRIG 4, ECHO 18
-├── HC-SR04 (trás) → TRIG 5, ECHO 19
-├── L298N → IN1 13, IN2 12, IN3 14, IN4 27
-├── OLED → SDA 21, SCL 22
-└── Buzzer → GPIO 26
+
+<img width="298" height="159" alt="image" src="https://github.com/user-attachments/assets/c7ae8949-2035-452f-90e7-f0d6d6920476" />
 
 
 🧰 O diagrama elétrico foi criado no **Wokwi**, com todas as ligações simuladas.  
@@ -404,7 +388,9 @@ ESP32
 
 📄 **Autores:**  
 Ruben Ferreira
+
 Sofia Leandro
-Catarina Cardoso	
+
+Catarina Cardoso
 
 📅 **Data:** Dezembro 2025  
