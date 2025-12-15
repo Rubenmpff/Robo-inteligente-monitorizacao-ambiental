@@ -153,7 +153,9 @@ O artefacto físico é composto por uma base robótica 4WD com:
 - Ponte H L298N;
 - Alimentação por Pilhas;
 
-*(Metemos Imagem quando começarmos o projeto)*
+![WhatsApp Image 2025-12-15 at 16 18 04](https://github.com/user-attachments/assets/4ef5c40a-4118-428f-b5c8-6cd4a571f7f6)
+![WhatsApp Image 2025-12-15 at 16 18 05](https://github.com/user-attachments/assets/8914ecf7-702d-4fb0-a970-c5c8bdb74529)
+
 
 ---
 
@@ -265,7 +267,11 @@ Durante esta segunda fase foi desenvolvido e testado o **protótipo funcional Ro
 - 💬 **Envio de alertas automáticos** via **Telegram**
 - 🧠 **Funções de IA preditiva** *(em desenvolvimento)*
 
-📸 *Inserir aqui uma fotografia do robô montado / protótipo físico em funcionamento*
+![WhatsApp Image 2025-12-15 at 16 18 03](https://github.com/user-attachments/assets/9db5526d-d877-4317-928e-0888b3b538cb)
+
+
+https://github.com/user-attachments/assets/05524280-6da5-4680-9f27-0fcea9c01019
+
 
 ---
 
@@ -350,7 +356,11 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 - Integração da **ponte H L298N** e calibração dos motores
 - Ligação do **buzzer** e validação do alerta sonoro
 
-📸 *Inserir aqui fotos das ligações e montagem física*
+![WhatsApp Image 2025-12-15 at 16 17 57 (1)](https://github.com/user-attachments/assets/275ab5b9-78b7-4527-811c-bf27f0f440db)
+![WhatsApp Image 2025-12-15 at 16 17 57 (2)](https://github.com/user-attachments/assets/a57d78c1-6050-47af-92a3-b3878482f588)
+![WhatsApp Image 2025-12-15 at 16 17 57](https://github.com/user-attachments/assets/36d1fab6-2182-48ea-b1a5-3190527f3a51)
+![WhatsApp Image 2025-12-15 at 16 17 58](https://github.com/user-attachments/assets/37bb7fb4-ca44-4854-b470-360029b65844)
+![WhatsApp Image 2025-12-15 at 16 17 59](https://github.com/user-attachments/assets/b176666b-fe2d-440c-9b20-984220fe4ef1)
 
 ---
 
