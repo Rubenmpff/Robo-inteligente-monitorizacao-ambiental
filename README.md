@@ -1,4 +1,4 @@
-# 🤖 Robô Inteligente de Monitorização Ambiental
+# 🤖 EcoTrack - Robot Inteligente de Monitorização Ambiental
 
 **Universidade:** IADE – Universidade Europeia  
 **Faculdade:** Faculdade de Design, Tecnologia e Comunicação  
@@ -8,7 +8,7 @@
 **Unidade Curricular:** PBL – Sistemas Distribuídos, IoT, IA e Engenharia de Software  
 **Ano letivo:** 2025/2026  
 **Grupo:** 1  
-**Título do Projeto:** Robô Inteligente de Monitorização Ambiental  
+**Título do Projeto:** EcoTrack - Robot Inteligente de Monitorização Ambiental
 **Palavras-chave:** IoT, ESP32, Inteligência Artificial, Robótica, Sensores
 
 **Repositório GitHub:** https://github.com/Rubenmpff/Robo-inteligente-monitorizacao-ambiental  
@@ -43,7 +43,7 @@ O projeto tem como objetivo desenvolver um **robô inteligente de monitorizaçã
 
 - 📡 **Recolher dados ambientais** em tempo real (temperatura, humidade, som);  
 - 🚗 **Deslocar-se** pelo espaço, detetando obstáculos;  
-- 🧠 **Processar localmente as informações** e reagir de forma inteligente;  
+- 🧠 **Processar localmente as informações** e reagir de forma inteligente;
 - 🗣️ **Comunicar com o utilizador** e apresentar dados no ecrã e em LEDs;
 - 💾 **Armazenar dados** para análise posterior e possíveis previsões.  
 
@@ -60,15 +60,16 @@ Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)
 |-------------|-------------|--------|
 | ESP32 DevKit | 1 | Microcontrolador principal |
 | DHT22 | 1 | Sensor de temperatura e humidade |
-| HC-SR04 | 1 | Detectar obstáculos e distância |
+| HC-SR04 | 2 | Detectar obstáculos e distância |
 | INMP441 | 1 | Microfone digital (nível de som) |
+| LM2596  | 1 | Regulador de tensão |
 | OLED 0.96” | 1 | Mostrar expressões e dados |
 | 1 LED RGB (KY-016) | 1 | Feedback visual (cor por nível de som/estado) |
-| L298N | 1 | Ponte H para controlo dos motores |
-| Motores DC + rodas | 4 | Locomoção do robô |
+| L298N | 1 | Ponte H para controlo dos motores | 
+| Motores DC + rodas | 4 | Locomoção do robot |
 | Pilhas | 1 | Alimentação |
 | Breadboard e jumpers | — | Ligações e prototipagem |
-| Chassis robótico 4WD | 1 | Estrutura física do robô |
+| Chassis robótico 4WD | 1 | Estrutura física do robot |
 
 
 ---
@@ -80,10 +81,10 @@ Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)
 | Arduino IDE  | Programação do ESP32 |
 | Python | Processamento de dados e IA |
 | Flask | Servidor local e API REST |
-| SQLite / MySQL | Armazenamento de dados |
+| SQLite | Armazenamento de dados |
 | GitHub | Controlo de versões e documentação |
-| Draw.io / Fritzing | Criação de diagramas |
-| Wokwi / easyeda | Simulação de circuitos e sensores |
+| Draw.io / Canva | Criação de diagramas |
+| Wokwi | Simulação de circuitos e sensores |
 
 ---
 
@@ -92,10 +93,10 @@ Este sistema pretende demonstrar a integração entre **IoT (Internet of Things)
 
 O sistema é composto por dois módulos principais:  
 - **Módulo físico (robô inteligente)** — responsável pela recolha de dados, movimento e interação.  
-- **Módulo lógico (servidor local)** — responsável por processar, armazenar e visualizar as informações recolhidas pelo robô.
+- **Módulo lógico (servidor local)** — responsável por processar, armazenar e visualizar as informações recolhidas pelo robot.
 
-O robô utiliza o **ESP32** como controlador central, comunicando com sensores, atuadores e periféricos através de ligações digitais e analógicas.  
-Os dados recolhidos são processados localmente e, quando disponível uma ligação Wi-Fi, são enviados para o **servidor local**, onde são armazenados numa **base de dados SQLite/MYSQL** e apresentados numa **interface web** desenvolvida em **Python**.
+O robot utiliza o **ESP32** como controlador central, comunicando com sensores, atuadores e periféricos através de ligações digitais e analógicas.  
+Os dados recolhidos são processados localmente e, quando disponível uma ligação Wi-Fi, são enviados para o **servidor local**, onde são armazenados numa **base de dados SQLite** e apresentados numa **interface web** desenvolvida em **Python**.
 
 ---
 
@@ -105,17 +106,18 @@ Os dados recolhidos são processados localmente e, quando disponível uma ligaç
     |               Servidor Local              |
     |-------------------------------------------|
     |  • Python                                 |
-    |  • Base de Dados (SQLite / MySQL)         |
+    |  • Base de Dados (SQLite)                 |
     |  • Interface Web de Monitorização         |
     +--------------------^----------------------+
                          |
                   Wi-Fi (Local Network)
                          |
     +--------------------v----------------------+
-    |                Robô ESP32                 |
+    |                Robot ESP32                 |
     |-------------------------------------------|
     |  • ESP32 DevKit                          |
     |  • Sensores: DHT22, HC-SR04              |
+    |  • LM2596                                |
     |  • OLED Display + LED RGB (KY-016)       |
     |  • Ponte H L298N + Motores DC            |
     |  • Pilhas                                |
@@ -143,10 +145,12 @@ Os dados recolhidos são processados localmente e, quando disponível uma ligaç
 
 O artefacto físico é composto por uma base robótica 4WD com:
 - Estrutura em plástico;
-- Sensores frontais e laterais (DHT22, HC-SR04, INMP441);
-- Ecrã OLED representando o “rosto” do robô;
+- Sensores (DHT22, HC-SR04, INMP441);
+- Ecrã OLED representando o “rosto” do robot;
 - LEDs WS2812B para feedback visual e reação a som;
-- Microfone integrado;
+- Microfone integrado (INMP441);
+- LM2596 Regulador de tensão;
+- Ponte H L298N;
 - Alimentação por Pilhas;
 
 *(Metemos Imagem quando começarmos o projeto)*
@@ -170,13 +174,13 @@ O artefacto físico é composto por uma base robótica 4WD com:
 ## 🧪 Guiões de Teste (Versão Preliminar)
 
 ### 🧩 Guião 1 – Monitorização Ambiental
-1. Ligar o robô e aguardar a inicialização do sistema.  
-2. O robô ativa automaticamente os sensores DHT22, INMP441.  
+1. Ligar o robot e aguardar a inicialização do sistema.  
+2. O robot ativa automaticamente os sensores DHT22, INMP441.  
 3. Os valores de temperatura, humidade e nível de som são apresentados no ecrã OLED.
 4. Os dados são enviados para o servidor local e registados na base de dados.
 
 ### 🎧 Guião 2 – Reação a Som
-1. Colocar o robô num ambiente com diferentes níveis de ruído.  
+1. Colocar o robot num ambiente com diferentes níveis de ruído.  
 2. O microfone (INMP441) deteta o volume ambiente.  
 3. O LED RGB muda de cor conforme o nível de som (verde → azul → vermelho).
 4. Quando o som diminui, o LED regressa a verde.
@@ -184,7 +188,8 @@ O artefacto físico é composto por uma base robótica 4WD com:
 ---
 
 ## 🧱 Diagrama de Circuitos
-*(Opcional, faremos quando começarmos o projeto )*
+
+<img width="338" height="495" alt="image" src="https://github.com/user-attachments/assets/393c4b65-1b91-4b01-9b0e-2d23687a1dd1" />
 
 ---
 
@@ -247,7 +252,7 @@ Catarina Cardoso
 
 ## 🧠 1. Descrição da Funcionalidade do Protótipo
 
-Durante esta segunda fase foi desenvolvido e testado o **protótipo funcional RoboSP32**, um robô móvel baseado em **ESP32**, capaz de monitorizar o ambiente e interagir com o utilizador.
+Durante esta segunda fase foi desenvolvido e testado o **protótipo funcional RoboESP32 - EcoTrack**, um robot móvel baseado em **ESP32**, capaz de monitorizar o ambiente e interagir com o utilizador.
 
 ### ⚙️ Funcionalidades Implementadas
 
@@ -268,14 +273,15 @@ Durante esta segunda fase foi desenvolvido e testado o **protótipo funcional Ro
 
 O sistema segue um **modelo cliente–servidor**, comunicando via **REST API**.
 
-### 🧩 Módulo Físico (ESP32 – Robô IoT)
+### 🧩 Módulo Físico (ESP32 – Robot IoT)
 
 - Leitura dos sensores (**DHT22**, **HC-SR04**)
 - Controlo dos motores (**L298N**)
 - Exibição dos dados (**OLED**)
 - Envio de dados (**POST /dados**) para o servidor Flask
 - Receção de comandos (**GET /api/controlo_robo**)
-- Modo automático com lógica de navegação e segurança
+- Modo automático com lógica de navegação e segurança (Em Desenvolvimento)
+- Regulador de tensão (**LM2596**);
 
 ### 🖥️ Módulo Lógico (Servidor Flask + Dashboard)
 
@@ -293,18 +299,15 @@ ESP32 → POST /dados → Servidor Flask
 Flask → guarda dados → atualiza Dashboard
 Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 
-
-📊 *Inserir aqui um print ou esquema do dashboard Flask em funcionamento*
+<img width="933" height="575" alt="image" src="https://github.com/user-attachments/assets/aabb4d6d-1b8f-4722-94e9-90c3037a54c0" />
 
 ---
 
 ### 🧱 Arquitetura Geral
 
 
-<img width="197" height="321" alt="image" src="https://github.com/user-attachments/assets/51b75349-aba8-4192-9fd0-4ece239907fa" />
+![WhatsApp Image 2025-12-15 at 15 31 32](https://github.com/user-attachments/assets/2aae111c-39b7-4c2a-aa1a-cf4ffd649450)
 
-
-📐 *Inserir aqui um diagrama de arquitetura feito em Draw.io ou Lucidchart*
 
 ---
 
@@ -320,7 +323,9 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 | L298N                | IN1 13 / IN2 12 / IN3 14 / IN4 27       |
 | OLED                 | SDA 21 / SCL 22                         |
 | Buzzer               | GPIO 26                                 |
+| LM2596               | Regulador de tensão (Em Desenvolvimento)|
 | Alimentação          | VIN / GND                               |
+
 
 ### 🔧 Esquema Simplificado
 
@@ -329,7 +334,10 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 
 
 🧰 O diagrama elétrico foi criado no **Wokwi**, com todas as ligações simuladas.  
-📸 *Inserir aqui print do circuito no Wokwi ou foto real do circuito na breadboard*
+
+
+<img width="343" height="495" alt="image" src="https://github.com/user-attachments/assets/ed34a30a-dfcb-4de3-88b4-41b4dd0767b5" />
+
 
 ---
 
@@ -353,7 +361,7 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 - Lógica de **controlo remoto e atualização OLED**
 - Gestão de **reconexão Wi-Fi automática**
 
-📟 *Inserir print do código ou captura do terminal com leituras a chegar*
+![WhatsApp Image 2025-12-15 at 15 31 32](https://github.com/user-attachments/assets/6607a7fe-3c4a-4ccf-9a9c-c777d5939a41)
 
 ---
 
@@ -364,7 +372,11 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 - Dashboard interativo com **gráficos e botões de controlo**
 - Sistema de **alertas Telegram** funcional
 
-📊 *Inserir print do dashboard web e exemplo de alerta Telegram*
+  
+<img width="654" height="558" alt="image" src="https://github.com/user-attachments/assets/7d40e7f5-adb3-4c75-a4b3-008a76110781" />
+<img width="1900" height="922" alt="image" src="https://github.com/user-attachments/assets/69f4a27b-3e56-4a6e-b81e-3c12115047df" />
+<img width="1891" height="943" alt="image" src="https://github.com/user-attachments/assets/ae34ed8a-6647-4a93-9f3c-371203938356" />
+
 
 ---
 
@@ -382,6 +394,7 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 - Otimização do **modo automático** e do **servidor**
 - Melhorias na **interface web** e documentação final
 - Integração de **mais sensores**
+- Fase de testes
 
 ---
 
