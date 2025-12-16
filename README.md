@@ -197,14 +197,9 @@ O artefacto físico é composto por uma base robótica 4WD com:
 
 ## 📅 Plano de Trabalho e Distribuição de Tarefas
 
-| Fase | Atividade | Responsável | Prazo |
-|------|------------|--------------|--------|
-| 1️⃣ | Levantamento de requisitos e planeamento | Todos | semana 1/2 |
-| 2️⃣ | Desenvolvimento do protótipo | Catarina | semana 3/4 |
-| 3️⃣ | Programação do ESP32 e controlo de movimento | Ruben | semana 4/5 |
-| 4️⃣ | Integração com servidor Python | Sofia | semana 5/6 |
-| 5️⃣ | Plataforma Web e Base de dados | Todos  | semana 6/7 |
-| 6️⃣ | Testes e validação final | Todos | semana 7 |
+<img width="950" height="492" alt="image" src="https://github.com/user-attachments/assets/86a857b7-e4ef-437e-a0f6-b6e686bc91d7" />
+
+![WhatsApp Image 2025-12-15 at 18 06 56](https://github.com/user-attachments/assets/4c1d5296-eb26-40e1-820e-d6f29cb4900e)
 
 ---
 
@@ -361,6 +356,16 @@ Dashboard → POST /api/controlo_robo → Flask → GET no ESP32
 ![WhatsApp Image 2025-12-15 at 16 17 57](https://github.com/user-attachments/assets/36d1fab6-2182-48ea-b1a5-3190527f3a51)
 ![WhatsApp Image 2025-12-15 at 16 17 58](https://github.com/user-attachments/assets/37bb7fb4-ca44-4854-b470-360029b65844)
 ![WhatsApp Image 2025-12-15 at 16 17 59](https://github.com/user-attachments/assets/b176666b-fe2d-440c-9b20-984220fe4ef1)
+---
+
+## Plataforma Modular
+
+### O foco central é a flexibilidade e a escalabilidade do sistema.
+
+- Expansibilidade de Hardware: O sistema permite a integração de novos sensores de forma simples, facilitando a coleta de diferentes tipos de dados conforme a necessidade.
+- Arquitetura de Software: O código do servidor, desenvolvido em Flask (um framework Python), é estruturado de forma modular. Isso torna a manutenção e a inclusão de novas funcionalidades muito mais eficientes.
+- Escalabilidade: O sistema possui a capacidade de ser replicado, o que sugere que pode ser expandido para diferentes unidades ou instâncias sem a necessidade de criar um novo código do zero.
+- Versatilidade de Aplicação: Devido à sua natureza modular, a plataforma pode ser facilmente adaptada para monitorar diversos tipos de ambientes (industriais, residenciais, agrícolas)
 
 ---
 
