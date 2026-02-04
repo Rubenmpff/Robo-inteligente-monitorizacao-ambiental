@@ -243,7 +243,7 @@ Sofia Leandro
 Catarina Cardoso	
 
 📅 **Data:** Novembro 2025  
------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 🧩 Milestone 2 – Desenvolvimento e Prototipagem
 
@@ -422,3 +422,429 @@ Sofia Leandro
 Catarina Cardoso
 
 📅 **Data:** Dezembro 2025  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Milestone 3 – Integração de IA, Interação Natural e Sistema Completo
+
+## 🧠 1. Objetivo do Milestone 3
+
+Nesta terceira fase foi concluída a integração do sistema **RoboESP32 – EcoTrack** com módulos de **Inteligência Artificial** e **interação natural**, elevando o projeto de um sistema IoT reativo para uma plataforma inteligente, preditiva e interativa.
+
+Foram integrados:
+
+- **IA preditiva**, através de Regressão Linear, para estimar valores futuros de temperatura e humidade;
+- **Interação conversacional**, recorrendo a um **LLM local (Ollama)**, ativado por um evento sonoro (“clap”);
+- **Resposta por voz (TTS)**, onde o servidor gera áudio e o ESP32 reproduz o som através de uma coluna via **I2S**.
+
+Com estas funcionalidades, o sistema passa a ser capaz de:
+
+- recolher dados ambientais;
+- armazenar e visualizar informação num dashboard web;
+- gerar previsões ambientais;
+- emitir alertas automáticos;
+- interagir com o utilizador por som e voz com suporte de IA.
+
+---
+
+## ⚙️ 2. Funcionalidades Implementadas (Milestone 3)
+
+### ✅ Monitorização e controlo (mantidas e consolidadas)
+
+- 🌡️ **DHT22**: leitura de temperatura e humidade, com otimização por cache;
+- 📏 **2× HC-SR04**: deteção de obstáculos (frente e trás);
+- 🚗 **L298N**: controlo manual e modo automático com lógica de evasão;
+- 💡 **2 OLED**: visualização de dados do sistema e estado da bateria em tempo real;
+- 🔊 **Buzzer**: alerta sonoro em função da proximidade de obstáculos;
+- 📶 **Wi-Fi + REST**: comunicação bidirecional ESP32 ↔ servidor Flask;
+- 💬 **Telegram**: envio de alertas automáticos com controlo de spam.
+
+### 🧠 Novas funcionalidades deste milestone (IA + LLM)
+
+- 📈 **Previsões ambientais** com Regressão Linear (temperatura e humidade);
+- 👏 **Deteção de clap** no ESP32 através do microfone **INMP441 (I2S)**;
+- 🤖 **LLM Ollama** para gerar respostas textuais com base no contexto do sistema;
+- 🗣️ **TTS (voz)**: o servidor gera ficheiros WAV e o ESP32 reproduz o áudio via **MAX98357 (I2S)**.
+
+---
+
+### 🔗 Continuidade em relação ao Milestone 2
+
+Este milestone baseia-se diretamente no trabalho desenvolvido no **Milestone 2**, onde foi implementado e validado um protótipo funcional do sistema RoboESP32 – EcoTrack.  
+Nesse milestone foram consolidadas a arquitetura cliente–servidor, a comunicação REST entre o ESP32 e o servidor Flask, o controlo de movimento, a leitura de sensores, o dashboard web e a base de dados.
+
+No **Milestone 3**, esse protótipo funcional foi estendido e integrado com módulos de **Inteligência Artificial**, **interação natural** e **síntese de voz**, resultando numa solução completa, estável e pronta para demonstração final.
+
+---
+
+## 🧩 3. Arquitetura Implementada
+
+Esta secção apresenta a arquitetura final do sistema **RoboESP32 – EcoTrack**,
+descrevendo a organização dos seus principais módulos, os fluxos de comunicação
+e a integração entre **hardware**, **software** e **Inteligência Artificial**.
+A arquitetura foi concebida segundo um modelo **cliente–servidor**, permitindo
+uma separação clara de responsabilidades, escalabilidade e facilidade de manutenção.
+
+---
+
+### 📐 3.0 Diagrama Geral da Arquitetura
+
+O diagrama geral da arquitetura apresenta uma visão de alto nível do sistema
+RoboESP32 – EcoTrack, evidenciando a separação entre o **módulo físico**
+(Robot IoT baseado em ESP32) e o **módulo lógico** (Servidor Flask com integração
+de Inteligência Artificial).
+
+O módulo físico é responsável pela recolha de dados ambientais, controlo de
+movimento, interação local e deteção de eventos sonoros, enquanto o módulo
+lógico centraliza o processamento, armazenamento, visualização dos dados e
+execução dos módulos de IA, incluindo previsões ambientais, interação com LLM
+e síntese de voz.
+
+A comunicação entre os dois módulos é realizada através de uma API REST sobre
+Wi-Fi, permitindo o envio contínuo de leituras, a receção de comandos remotos
+e a troca de eventos associados à interação natural (clap) e reprodução de
+áudio (TTS).
+
+Esta arquitetura cliente–servidor garante modularidade, escalabilidade e
+facilidade de extensão do sistema, permitindo a integração de novos sensores,
+modelos de Inteligência Artificial e funcionalidades futuras.
+
+
++----------------------------------------------------+
+|                Servidor Flask + IA                 |
+|----------------------------------------------------|
+|  • API REST (Flask)                                |
+|  • Base de Dados (SQLite)                          |
+|      - leituras                                    |
+|      - previsoes                                   |
+|      - telegram_chat_ids                           |
+|  • Módulo IA (Regressão Linear)                    |
+|  • LLM (Ollama)                                    |
+|  • TTS (Geração de WAV)                            |
+|  • Sistema de Alertas (Telegram)                   |
+|  • Dashboard Web (HTML + Chart.js)                 |
++-------------------------^--------------------------+
+                          |
+                    REST / HTTP (Wi-Fi)
+                          |
++-------------------------v--------------------------+
+|                 Robot ESP32 (IoT)                  |
+|----------------------------------------------------|
+|  • ESP32 DevKit                                    |
+|  • Sensores:                                      |
+|      - DHT22 (Temp/Hum)                            |
+|      - HC-SR04 (Obstáculos)                        |
+|      - INMP441 (Som / Clap)                        |
+|  • Atuadores:                                     |
+|      - Motores DC (L298N)                          |
+|      - Buzzer / LED RGB                            |
+|      - OLEDs                                      |
+|  • Lógica Local:                                  |
+|      - Modo manual                                |
+|      - Modo automático                            |
+|      - Deteção de clap                             |
+|  • Reprodução de áudio (MAX98357 – I2S)            |
++----------------------------------------------------+
+
+
+
+---
+
+### 🔌 3.1 Módulo Físico – ESP32 (Robot IoT)
+
+O módulo físico corresponde ao robô móvel baseado em **ESP32**, responsável
+pela recolha de dados ambientais, interação local, controlo de movimento e
+comunicação com o servidor.
+
+#### Responsabilidades principais
+
+**Leitura dos sensores**
+- Sensor **DHT22** para medição de temperatura e humidade;
+- Dois sensores ultrassónicos **HC-SR04** para deteção de obstáculos à frente e atrás;
+- Microfone digital **INMP441** para análise do nível de som ambiente e deteção de eventos de “clap”.
+
+**Controlo de movimento**
+- Motores DC controlados através da ponte H **L298N**;
+- Modo manual, acionado remotamente a partir do dashboard;
+- Modo automático com lógica local de segurança e evasão de obstáculos.
+
+**Output local**
+- **OLED principal** para apresentação de dados ambientais, distâncias, modo de funcionamento e estado do som;
+- **OLED secundário** dedicado à visualização da tensão e percentagem da bateria;
+- **Buzzer** para alertas sonoros de proximidade;
+- **LED RGB** para feedback visual do estado do sistema e do nível de som.
+
+**Comunicação**
+- Envio de leituras e eventos para o servidor através de pedidos REST;
+- Receção de comandos de controlo remoto;
+- Comunicação bidirecional para reprodução de áudio (TTS).
+
+#### Endpoints utilizados pelo ESP32
+
+| Endpoint | Método | Função |
+|---------|--------|--------|
+| `/dados` | POST | Envio de leituras ambientais e eventos (incluindo clap) |
+| `/api/leituras` | GET | Consulta de dados para o dashboard |
+| `/api/controlo_robo` | GET / POST | Receção e envio de comandos de movimento |
+| `/api/speech/next` | GET | Verificação de áudio disponível para reprodução |
+| `/api/speech/ack` | POST | Confirmação da reprodução do áudio |
+
+---
+
+### 🖥️ 3.2 Módulo Lógico – Servidor Flask + Dashboard + IA
+
+O módulo lógico é responsável pelo processamento, armazenamento e visualização
+dos dados recolhidos pelo robô, bem como pela execução dos módulos de Inteligência
+Artificial e interação natural.
+
+#### Responsabilidades principais
+
+- Implementação de uma **API REST** em Flask para comunicação com o ESP32;
+- Gestão de uma base de dados **SQLite**, composta pelas tabelas:
+  - `leituras` – armazenamento de dados ambientais;
+  - `previsoes` – armazenamento de previsões geradas pelo modelo preditivo;
+  - `telegram_chat_ids` – gestão de utilizadores para alertas Telegram;
+- **Dashboard Web** desenvolvido em HTML, Bootstrap e Chart.js, permitindo:
+  - visualização de dados em tempo real;
+  - consulta de histórico por datas;
+  - apresentação gráfica das previsões ambientais;
+- **Sistema de alertas automáticos** via Telegram;
+- **Módulo de IA preditiva**, baseado em Regressão Linear, para previsão multi-step
+  de temperatura e humidade;
+- **Integração com LLM (Ollama)** para geração de respostas textuais após eventos de clap;
+- **Sistema de síntese de voz (TTS)**, responsável pela geração de ficheiros WAV
+  e disponibilização do áudio ao ESP32 através de endpoints dedicados.
+
+---
+
+### 🔌 3.3 Diagrama de Circuitos (versão final)
+
+<img width="672" height="468" alt="Diagrama geral da arquitetura do sistema" src="https://github.com/user-attachments/assets/e3733fd1-c178-4567-ac83-e5d4af05dd5a" />
+
+O diagrama de circuitos representa a implementação física final do sistema
+RoboESP32 – EcoTrack, evidenciando as ligações elétricas entre o ESP32 e
+todos os sensores, atuadores e módulos utilizados.
+
+Estão incluídas as ligações dos sensores DHT22 e HC-SR04, dos módulos de áudio
+INMP441 e MAX98357 via interface I2S, dos displays OLED via I2C e I2C secundário,
+bem como do buzzer, LED RGB, ponte H L298N, motores DC e sistema de alimentação
+com regulador de tensão XL6019.
+
+Este diagrama corresponde à configuração final utilizada no Milestone 3 e
+serviu de base para a implementação, testes e validação do sistema completo.
+
+---
+
+## 🔄 4. Fluxos de Comunicação
+
+### 4.1 Fluxo principal – Sensores e dashboard
+1. O ESP32 lê sensores e estado do sistema;
+2. Envia dados para o servidor (`POST /dados`);
+3. O servidor guarda na base de dados e atualiza variáveis internas;
+4. O dashboard consulta (`GET /api/leituras`);
+5. Os dados são apresentados em tempo real e em gráficos.
+
+### 4.2 Fluxo de controlo remoto
+1. O utilizador interage com o dashboard;
+2. O dashboard envia comando (`POST /api/controlo_robo`);
+3. O ESP32 faz polling (`GET /api/controlo_robo`);
+4. O robô executa o comando (manual ou automático).
+
+### 4.3 Fluxo de IA preditiva (Regressão Linear)
+1. O servidor lê dados históricos da base de dados;
+2. Calcula médias diárias;
+3. Treina o modelo com lags (d-1 e d-2);
+4. Gera previsões multi-step;
+5. Guarda resultados na tabela `previsoes`;
+6. Apresenta resultados na página **Previsões**.
+
+### 4.4 Fluxo LLM + Voz (Interação natural)
+1. O microfone INMP441 deteta um pico → clap;
+2. O ESP32 envia evento no `POST /dados`;
+3. O servidor valida se o evento é novo;
+4. O Flask chama o **Ollama** para gerar uma frase curta;
+5. O texto entra na fila TTS e é convertido em WAV;
+6. O ESP32 faz polling (`/api/speech/next`);
+7. O áudio é descarregado e reproduzido;
+8. O ESP32 envia confirmação (`/api/speech/ack`).
+
+---
+
+## 📈 5. Módulo de IA – Regressão Linear
+
+### 5.1 Preparação dos dados
+- Leituras armazenadas em tempo real na tabela `leituras`;
+- Cálculo de médias diárias de temperatura e humidade.
+
+### 5.2 Features utilizadas (lags)
+- `temp_d-1`, `temp_d-2`
+- `hum_d-1`, `hum_d-2`
+
+### 5.3 Treino e avaliação
+- Modelo: **LinearRegression** (scikit-learn);
+- Divisão temporal 80/20;
+- Métrica: **RMSE** (erro médio quadrático).
+
+### 5.4 Previsão multi-step
+- Previsões realizadas em cadeia;
+- O valor previsto para amanhã é usado para prever dias seguintes;
+- Resultados armazenados e visualizados no dashboard.
+
+---
+
+## 🤖 6. Módulo LLM (Ollama)
+
+**Objetivo**  
+Permitir respostas naturais e curtas quando o utilizador interage com um clap.
+
+**Contexto enviado ao LLM**
+- temperatura atual;
+- humidade atual;
+- estado do som (SIL/MED/ALT);
+- bateria (quando disponível);
+- histórico curto para evitar repetição.
+
+**Resultado**
+- resposta curta (1–2 frases);
+- sem listas nem emojis;
+- fallback seguro em caso de falha do modelo.
+
+---
+
+## 🗣️ 7. Síntese de Voz (TTS) e Reprodução no ESP32
+
+- Geração de ficheiros WAV (PCM 16-bit) no servidor;
+- Reprodução no ESP32 via **I2S (MAX98357)**;
+- Sistema de fila:
+  - enqueue → gerar → disponibilizar → ack;
+- Evita repetição de áudio e permite escalabilidade.
+
+---
+
+## 🛠️ 8. Atividades Realizadas
+
+- Integração do módulo de IA preditiva no servidor;
+- Implementação da interação natural (clap, LLM e TTS);
+- Desenvolvimento de fila de áudio com confirmação (ACK);
+- Integração das previsões no dashboard;
+- Testes funcionais e de integração do sistema completo;
+- Ajustes finais de desempenho, estabilidade e fiabilidade.
+
+---
+
+## 🧪 9. Testes Realizados e Resultados
+
+### Testes funcionais
+- Envio periódico de leituras pelo ESP32;
+- Atualização do dashboard em tempo real;
+- Execução correta de comandos remotos;
+- Envio de alertas Telegram;
+- Geração e visualização de previsões;
+- Interação por clap com resposta por voz.
+
+### Resultados
+- Integração completa **IoT + IA + Web + Voz**;
+- Sistema robusto com:
+  - deduplicação de eventos (`clap_seq`);
+  - fila de áudio com confirmação (ACK).
+
+---
+### 🎥 Demonstração do Sistema
+
+Foi produzido um vídeo técnico com a demonstração completa do sistema RoboESP32 – EcoTrack,
+onde são apresentadas as funcionalidades finais do robô, a comunicação com o dashboard,
+a geração de previsões, bem como a interação natural por som e voz.
+
+(colocar video)
+
+
+---
+
+## ⚠️ 10. Limitações e Funcionalidades Não Implementadas
+
+Apesar do sistema atingir os objetivos principais, algumas funcionalidades inicialmente planeadas não foram totalmente implementadas devido a limitações de tempo, recursos e complexidade técnica, nomeadamente:
+
+- utilização de modelos preditivos mais avançados (ARIMA, LSTM), que requerem maior volume de dados históricos e maior capacidade computacional;
+- interação mais rica com o LLM, incluindo suporte completo à língua portuguesa e múltiplas intenções de interação;
+- otimização adicional do modo automático de navegação, com algoritmos mais avançados de planeamento de trajetória;
+- implementação de mecanismos de autenticação e segurança mais robustos na API REST;
+- **integração de reconhecimento facial**, cujo desenvolvimento foi iniciado, mas não concluído dentro do tempo disponível, sendo considerado um objetivo relevante para futuras extensões do sistema, nomeadamente para identificação de utilizadores e personalização de interações.
+
+Estas limitações não comprometem o funcionamento global do sistema, mas representam oportunidades claras de melhoria e evolução futura.
+
+
+---
+
+## 🚀 11. Próximas Etapas
+
+Como trabalho futuro, o sistema RoboESP32 – EcoTrack pode ser evoluído em várias direções, reforçando o seu carácter inteligente, autónomo e escalável:
+
+- Integração de modelos preditivos mais avançados (ex.: ARIMA, LSTM), à medida que exista maior volume de dados históricos;
+- Expansão do conjunto de sensores ambientais, permitindo uma monitorização mais completa do ambiente;
+- Implementação de mecanismos de segurança e autenticação na API REST, adequados a ambientes reais e multiutilizador;
+- Otimização do modo automático de navegação, recorrendo a algoritmos mais avançados de planeamento de trajetória e evasão de obstáculos;
+- Evolução da interação com o LLM, incluindo suporte à língua portuguesa, múltiplas intenções e respostas mais contextuais;
+- Integração futura de reconhecimento facial, permitindo identificação de utilizadores e personalização das interações do robô.
+
+Estas próximas etapas permitem que o projeto evolua de um protótipo académico para uma solução mais robusta e próxima de um sistema real.
+
+
+---
+
+## 🧰 12. Componentes Utilizados
+
+| Componente           | Quantidade | Função |
+|--------------------|-----------|--------|
+| ESP32 DevKit | 1 | Microcontrolador principal |
+| DHT22 | 1 | Sensor de temperatura e humidade |
+| HC-SR04 | 2 | Deteção de obstáculos |
+| INMP441 | 1 | Microfone digital |
+| Buzzer | 1 | Sinal sonoro |
+| XL6019 | 1 | Regulador de tensão |
+| MCP23017 | 1 | Expansor de I/O |
+| MAX98357 | 1 | Amplificador + speaker |
+| OLED 0.96” | 1 | Display principal |
+| OLED 0.91” | 1 | Display de bateria |
+| LED RGB (KY-016) | 1 | Feedback visual |
+| L298N | 1 | Ponte H |
+| Motores DC + rodas | 4 | Locomoção |
+| Pilhas | 1 | Alimentação |
+| Breadboard e jumpers | — | Prototipagem |
+| Chassis robótico 4WD | 1 | Estrutura física |
+
+## 💻 12A. Software e Tecnologias Utilizadas
+- ESP32 (Arduino IDE)
+- Python
+- Flask (API REST)
+- SQLite
+- Chart.js + Bootstrap (dashboard)
+- Telegram Bot API
+- scikit-learn (Regressão Linear)
+- Ollama (LLM local)
+- TTS (geração WAV PCM 16-bit)
+
+
+---
+
+## 👥 13. Distribuição de Tarefas
+
+- **Ruben Ferreira**: firmware ESP32, sensores, atuadores, comunicação Wi-Fi, clap e áudio;
+- **Sofia Leandro**: servidor Flask, API REST, base de dados, dashboard e Telegram;
+- **Catarina Cardoso**: módulo de IA, regressão linear, previsões e apoio à documentação.
+
+---
+
+## 🏁 14. Conclusão
+
+O projeto **RoboESP32 – EcoTrack** demonstra a integração bem-sucedida de conceitos de **Sistemas Distribuídos**, **Computação Física**, **IoT** e **Inteligência Artificial** num sistema real e funcional.  
+O Milestone 3 consolida todo o trabalho desenvolvido, resultando numa plataforma inteligente, interativa e extensível.
+
+---
+
+## 📄 Autores
+
+- Ruben Ferreira  
+- Sofia Leandro  
+- Catarina Cardoso  
+
+📅 **Data:** 02/2026
