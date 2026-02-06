@@ -5,10 +5,10 @@
 
 ## 🏫 Identificação do Projeto
 **Curso:** Engenharia Informática  
-**Unidade Curricular:** PBL – Sistemas Distribuídos, IoT, IA e Engenharia de Software  
+**Unidade Curricular:** PBL – Sistemas Distribuídos, Computação Física e IoT, Inteligência Artificial e Engenharia de Software  
 **Ano letivo:** 2025/2026  
 **Grupo:** 1  
-**Título do Projeto:** EcoTrack - Robot Inteligente de Monitorização Ambiental
+**Título do Projeto:** EcoTrack - Robot de Monitorização Ambiental
 **Palavras-chave:** IoT, ESP32, Inteligência Artificial, Robótica, Sensores
 
 **Repositório GitHub:** https://github.com/Rubenmpff/Robo-inteligente-monitorizacao-ambiental  
@@ -429,7 +429,7 @@ Catarina Cardoso
 
 ## 🧠 1. Objetivo do Milestone 3
 
-Nesta terceira fase foi concluída a integração do sistema **RoboESP32 – EcoTrack** com módulos de **Inteligência Artificial** e **interação natural**, elevando o projeto de um sistema IoT reativo para uma plataforma inteligente, preditiva e interativa.
+Nesta terceira fase foi concluída a integração do sistema **EcoTrack** com módulos de **Inteligência Artificial** e **interação natural**, elevando o projeto de um sistema IoT reativo para uma plataforma inteligente, preditiva e interativa.
 
 Foram integrados:
 
@@ -447,7 +447,7 @@ Com estas funcionalidades, o sistema passa a ser capaz de:
 
 ---
 
-## ⚙️ 2. Funcionalidades Implementadas (Milestone 3)
+## ⚙️ 2. Funcionalidades Implementadas
 
 ### ✅ Monitorização e controlo (mantidas e consolidadas)
 
@@ -470,7 +470,7 @@ Com estas funcionalidades, o sistema passa a ser capaz de:
 
 ### 🔗 Continuidade em relação ao Milestone 2
 
-Este milestone baseia-se diretamente no trabalho desenvolvido no **Milestone 2**, onde foi implementado e validado um protótipo funcional do sistema RoboESP32 – EcoTrack.  
+Este milestone baseia-se diretamente no trabalho desenvolvido no **Milestone 2**, onde foi implementado e validado um protótipo funcional do sistema EcoTrack.  
 Nesse milestone foram consolidadas a arquitetura cliente–servidor, a comunicação REST entre o ESP32 e o servidor Flask, o controlo de movimento, a leitura de sensores, o dashboard web e a base de dados.
 
 No **Milestone 3**, esse protótipo funcional foi estendido e integrado com módulos de **Inteligência Artificial**, **interação natural** e **síntese de voz**, resultando numa solução completa, estável e pronta para demonstração final.
@@ -479,7 +479,7 @@ No **Milestone 3**, esse protótipo funcional foi estendido e integrado com mód
 
 ## 🧩 3. Arquitetura Implementada
 
-Esta secção apresenta a arquitetura final do sistema **RoboESP32 – EcoTrack**,
+Esta secção apresenta a arquitetura final do sistema **EcoTrack**,
 descrevendo a organização dos seus principais módulos, os fluxos de comunicação
 e a integração entre **hardware**, **software** e **Inteligência Artificial**.
 A arquitetura foi concebida segundo um modelo **cliente–servidor**, permitindo
@@ -490,7 +490,7 @@ uma separação clara de responsabilidades, escalabilidade e facilidade de manut
 ### 📐 3.0 Diagrama Geral da Arquitetura
 
 O diagrama geral da arquitetura apresenta uma visão de alto nível do sistema
-RoboESP32 – EcoTrack, evidenciando a separação entre o **módulo físico**
+EcoTrack, evidenciando a separação entre o **módulo físico**
 (Robot IoT baseado em ESP32) e o **módulo lógico** (Servidor Flask com integração
 de Inteligência Artificial).
 
@@ -621,8 +621,8 @@ Artificial e interação natural.
 
 <img width="672" height="468" alt="Diagrama geral da arquitetura do sistema" src="https://github.com/user-attachments/assets/e3733fd1-c178-4567-ac83-e5d4af05dd5a" />
 
-O diagrama de circuitos representa a implementação física final do sistema
-RoboESP32 – EcoTrack, evidenciando as ligações elétricas entre o ESP32 e
+O diagrama de circuitos representa a implementação física final do
+EcoTrack, evidenciando as ligações elétricas entre o ESP32 e
 todos os sensores, atuadores e módulos utilizados.
 
 Estão incluídas as ligações dos sensores DHT22 e HC-SR04, dos módulos de áudio
@@ -751,11 +751,13 @@ Permitir respostas naturais e curtas quando o utilizador interage com um clap.
 ---
 ### 🎥 Demonstração do Sistema
 
-Foi produzido um vídeo técnico com a demonstração completa do sistema RoboESP32 – EcoTrack,
+Foi produzido um vídeo técnico com a demonstração completa do EcoTrack,
 onde são apresentadas as funcionalidades finais do robô, a comunicação com o dashboard,
 a geração de previsões, bem como a interação natural por som e voz.
 
-(colocar video)
+![WhatsApp Image 2026-02-06 at 11 18 21](https://github.com/user-attachments/assets/56446cd7-7c73-4070-9e4a-dbb77d8ec258)
+![WhatsApp Image 2026-02-06 at 11 18 42](https://github.com/user-attachments/assets/69dfa590-b8c8-4619-84ef-ac04408f4ec7)
+
 
 
 ---
@@ -777,7 +779,7 @@ Estas limitações não comprometem o funcionamento global do sistema, mas repre
 
 ## 🚀 11. Próximas Etapas
 
-Como trabalho futuro, o sistema RoboESP32 – EcoTrack pode ser evoluído em várias direções, reforçando o seu carácter inteligente, autónomo e escalável:
+Como trabalho futuro, o EcoTrack pode ser evoluído em várias direções, reforçando o seu carácter inteligente, autónomo e escalável:
 
 - Integração de modelos preditivos mais avançados (ex.: ARIMA, LSTM), à medida que exista maior volume de dados históricos;
 - Expansão do conjunto de sensores ambientais, permitindo uma monitorização mais completa do ambiente;
@@ -808,11 +810,11 @@ Estas próximas etapas permitem que o projeto evolua de um protótipo académico
 | LED RGB (KY-016) | 1 | Feedback visual |
 | L298N | 1 | Ponte H |
 | Motores DC + rodas | 4 | Locomoção |
-| Pilhas | 1 | Alimentação |
+| Bateria | 1 | Alimentação |
 | Breadboard e jumpers | — | Prototipagem |
 | Chassis robótico 4WD | 1 | Estrutura física |
 
-## 💻 12A. Software e Tecnologias Utilizadas
+## 💻 13. Software e Tecnologias Utilizadas
 - ESP32 (Arduino IDE)
 - Python
 - Flask (API REST)
@@ -822,29 +824,72 @@ Estas próximas etapas permitem que o projeto evolua de um protótipo académico
 - scikit-learn (Regressão Linear)
 - Ollama (LLM local)
 - TTS (geração WAV PCM 16-bit)
+- Fritzing
+- Canva
 
 
 ---
 
-## 👥 13. Distribuição de Tarefas
+## 👥 14. Distribuição de Tarefas
 
-- **Ruben Ferreira**: firmware ESP32, sensores, atuadores, comunicação Wi-Fi, clap e áudio;
-- **Sofia Leandro**: servidor Flask, API REST, base de dados, dashboard e Telegram;
-- **Catarina Cardoso**: módulo de IA, regressão linear, previsões e apoio à documentação.
+<img width="1357" height="464" alt="image" src="https://github.com/user-attachments/assets/e3a5c272-1872-4344-9bd1-4257f29b2be2" />
+<img width="909" height="499" alt="image" src="https://github.com/user-attachments/assets/a23f5648-9c10-42d6-b99d-f44872af1a81" />
+
 
 ---
 
-## 🏁 14. Conclusão
+## 🧠 15. Auto-avaliação
 
-O projeto **RoboESP32 – EcoTrack** demonstra a integração bem-sucedida de conceitos de **Sistemas Distribuídos**, **Computação Física**, **IoT** e **Inteligência Artificial** num sistema real e funcional.  
+A implementação final do projeto reflete um esforço substancial por parte da equipa, resultando num sistema funcional que cumpre os objetivos estabelecidos na proposta inicial. Apesar do elevado volume de trabalho e da complexidade logística inerente ao desenvolvimento remoto, o grupo concluiu o projecto com sucesso e apresenta um balanço final muito positivo.
+
+---
+
+### 15.1. Desvios à Proposta Inicial e Justificações
+
+Embora o sistema atinja o seu propósito central, certas funcionalidades planeadas sofreram ajustes ou não foram integralmente integradas. Estas decisões fundamentaram-se, essencialmente, em restrições de tempo, limitações de recursos e na elevada complexidade técnica encontrada:
+
+- **Modelos Preditivos (ARIMA, LSTM):**  
+  A transição para modelos de séries temporais mais avançados não foi concretizada, uma vez que estes requerem um volume de dados históricos e uma capacidade computacional superiores aos disponíveis no contexto atual do projecto.
+
+- **Interação com LLM:**  
+  A interação planeada foi simplificada, não sendo possível garantir o suporte completo à língua portuguesa e a gestão de múltiplas intenções de interação com a fluidez inicialmente idealizada.
+
+- **Navegação e Trajetória:**  
+  O modo automático de navegação foi implementado, mas a otimização com algoritmos de planeamento de trajetória de última geração foi limitada em prol da estabilidade do sistema.
+
+- **Reconhecimento Facial:**  
+  O desenvolvimento deste módulo foi iniciado; contudo, a sua conclusão e integração total foram inviabilizadas pelo cronograma apertado. Fica, no entanto, registado como uma evolução futura pertinente para a personalização da experiência do utilizador.
+
+---
+
+### 15.2. Desafios e Superação
+
+O desenvolvimento deste projeto foi marcado por desafios significativos que exigiram uma gestão de recursos rigorosa. Destacam-se dois pontos críticos:
+
+- **Implementação de IA:**  
+  A integração de componentes de Inteligência Artificial revelou-se a maior barreira técnica, exigindo um período de aprendizagem e depuração superior ao previsto.
+
+- **Logística e Custos:**  
+  A ausência de colaboração presencial e o investimento financeiro direto na aquisição de hardware (nomeadamente a compra de três unidades robóticas) representaram obstáculos que a equipa superou através de uma comunicação constante e de um compromisso pessoal elevado.
+
+---
+
+Em suma, as limitações identificadas não comprometem o funcionamento global do sistema, servindo antes como um roteiro para futuras iterações. A equipa sente-se muito realizada com o resultado alcançado, acreditando que o protótipo final é uma prova sólida da competência técnica desenvolvida ao longo do semestre.
+
+
+---
+
+## 🏁 16. Conclusão
+
+O projeto **EcoTrack** demonstra a integração bem-sucedida de conceitos de **Sistemas Distribuídos**, **Engenharia de Software**, **Computação Física e IoT** e **Inteligência Artificial** num sistema real e funcional.  
 O Milestone 3 consolida todo o trabalho desenvolvido, resultando numa plataforma inteligente, interativa e extensível.
 
 ---
 
 ## 📄 Autores
 
-- Ruben Ferreira  
-- Sofia Leandro  
-- Catarina Cardoso  
+- Catarina Cardoso | 20231654
+- Ruben Ferreira | 20231584
+- Sofia Leandro | 20231604
 
 📅 **Data:** 02/2026
